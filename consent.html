@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <title>Einwilligung zur Texterkennung</title>
+  <link rel="stylesheet" href="styles/consent.css">
+</head>
+<body>
+  <h2>Einwilligung zur Texterkennung</h2>
+  <p>
+    Diese Erweiterung ermöglicht die Markierung eines Bereichs in einem freigegebenen Fenster/Tab und erkennt den dort sichtbaren Text lokal im Browser.<br>
+    <strong>Es werden keine Daten an externe Server übertragen.</strong>
+  </p>
+  <p>
+    <em>Bitte stelle sicher, dass alle Beteiligten einer Videokonferenz der Texterkennung zugestimmt haben.</em>
+  </p>
+  <button id="agree">Zustimmen</button>
+  <script>
+    document.getElementById('agree').onclick = async () => {
+      await chrome.storage.local.set({ consent: true });
+      window.close();
+    };
+  </script>
+</body>
+</html>
