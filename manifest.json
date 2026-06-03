@@ -1,0 +1,38 @@
+{
+  "manifest_version": 3,
+  "name": "Live Select Copy OCR Pro",
+  "version": "0.2.0",
+  "description": "Neuartige Live-Selektion und Kopieren von Text aus Videostreams per Overlay, persistentem OCR-Worker (Tesseract.js) und Preprocessing – Datenschutz by Design.",
+  "permissions": [
+    "storage",
+    "scripting",
+    "clipboardWrite"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "action": {
+    "default_title": "Live Select Copy OCR Pro"
+  },
+  "background": {
+    "service_worker": "sw.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://meet.google.com/*"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "tesseract/tesseract.min.js",
+        "tesseract/worker.min.js",
+        "tesseract/tesseract-core.wasm.js",
+        "tesseract/tesseract-core.wasm"
+      ],
+      "matches": ["<all_urls>"]
+    }
+  ]
+}
